@@ -1,5 +1,6 @@
 //  OpenShift sample Node application
 var restify = require('restify'),
+	express = require('express'),
     fs      = require('fs');
 	
 var app = restify.createServer();
