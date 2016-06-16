@@ -10,7 +10,7 @@
     "tsc:w": "tsc -w",
     "typings": "typings"
   },
-  "main": "server.js"
+  "main": "server.js",
   "license": "ISC",
   "dependencies": {
     "@angular/common":  "2.0.0-rc.1",
@@ -29,7 +29,9 @@
     "zone.js": "^0.6.12",
     "angular2-in-memory-web-api": "0.0.11",
     "bootstrap": "^3.3.6",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "ejs": "^2.4.1",
+    "morgan": "^1.7.0"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",

@@ -1,10 +1,14 @@
 //  OpenShift sample Node application
-var express = require('express');
+var express = require('express'),
+    ejs     = require('ejs'),
+    morgan  = require('morgan');
 	
 var app = express();
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
+app.engine('html', ejs.renderFile);
+app.use(morgan('combined'));
 	
 app.get('/', function (req, res, next) {
     res.render('index.html');
