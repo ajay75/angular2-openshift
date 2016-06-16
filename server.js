@@ -19,7 +19,7 @@ app.get('/', function (req, res, next) {
   res.end(data.toString().replace(/host:port/g, req.header('Host')));
 });
 
-self.app.use(express.static(__dirname));
+app.use(express.static(__dirname));
 
 app.listen(port, ip, function () {
 	console.log('Server running on http://%s:%s', ip, port);
