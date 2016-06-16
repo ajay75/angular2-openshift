@@ -11,7 +11,7 @@ app.engine('html', ejs.renderFile);
 app.use(morgan('combined'));
 	
 app.get('/', function (req, res, next) {
-    res.render('index.html');
+    res.render('../index.html');
 });
 
 app.use(express.static(__dirname));
