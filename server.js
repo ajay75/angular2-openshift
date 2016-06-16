@@ -17,6 +17,7 @@ app.get('/', function (req, res, next) {
   res.status(200);
   res.header('Content-Type', 'text/html');
   res.end(data.toString().replace(/host:port/g, req.header('Host')));
+  console.log('Request on http://%s:%s/%s', ip, port, req);
 });
 
 app.listen(port, ip, function () {
