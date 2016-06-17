@@ -1,0 +1,16 @@
+<h1>My First AngularJs2 app</h1>
+<form (ngSubmit)="displayAllMovies()">
+    <button type="submit">Display all movies</button>
+</form>
+<hr>
+<p style="color:red">{{errorMessage}}</p>
+<h1>Movies :</h1>
+<div *ngFor="#movie of movies">
+	<h3>{{movie.name}}</h3>
+	Id: {{movie.id}}<br/>
+	Rating: {{movie.criticRating}}<br/>
+	<div *ngFor="#genre of movie.genre">
+		Genre : {{genre.name}}
+	</div>
+	
+</div>

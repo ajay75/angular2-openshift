@@ -1,7 +1,7 @@
 //  OpenShift sample Node application
 var express = require('express'),
     ejs     = require('ejs'),
-    morgan  = require('morgan');
+    morgan  = require('morgan'); // log all request
 	
 var app = express();
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;

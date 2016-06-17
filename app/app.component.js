@@ -9,15 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var movie_service_1 = require('./service/movie.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(movieService) {
+        this.movieService = movieService;
+        this.mode = 'Observable';
     }
+    AppComponent.prototype.displayAllMovies = function () {
+        var _this = this;
+        this.movieService.getAllMovies()
+            .subscribe(function (movies) { return _this.movies = movies; }, function (error) { return _this.errorMessage = error; });
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: '<h1>My First Angular 2 App</h1>'
+            templateUrl: 'app/app.component.tpl.html',
+            providers: [movie_service_1.MovieService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [movie_service_1.MovieService])
     ], AppComponent);
     return AppComponent;
 }());

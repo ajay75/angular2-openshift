@@ -1,6 +1,26 @@
 import { Component } from '@angular/core';
+import { Movie }              from './service/movie';
+import { MovieService } from './service/movie.service'
+
 @Component({
   selector: 'my-app',
-  template: '<h1>My First Angular 2 App</h1>'
+  templateUrl: 'app/app.component.tpl.html',
+  providers: [MovieService]
 })
-export class AppComponent { }
+export class AppComponent {
+
+	errorMessage: string;
+	movies: Movie[];
+	mode = 'Observable';
+
+	constructor (private movieService: MovieService) {}
+	 
+	 
+	displayAllMovies() {
+		this.movieService.getAllMovies()
+                     .subscribe(
+                       movies => this.movies = movies,
+                       error =>  this.errorMessage = <any>error);
+	}
+	
+}
