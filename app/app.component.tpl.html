@@ -1,16 +1,29 @@
-<h1>My First AngularJs2 app</h1>
+<h1>Movie application on Openshift platform</h1>
+<p style="color:red">{{errorMessage}}</p>
+<hr>
+
+<h2> Add new movie to ElasticSearch database</h2>
+<form (ngSubmit)="addMovie(newMovieName.value, newMovieRating.value, newMovieGenre.value); newMovieName.value=''; newMovieRating.value =''; newMovieGenre.value =''">
+	Name <input #newMovieName /><br/>
+	Rating <input #newMovieRating /><br/>
+	Genre <input #newMovieGenre /><br/>
+    <button type="submit">Add Movie</button>
+</form>
+
+<hr>
 <form (ngSubmit)="displayAllMovies()">
     <button type="submit">Display all movies</button>
 </form>
-<hr>
-<p style="color:red">{{errorMessage}}</p>
-<h1>Movies :</h1>
+<h2>Movies :</h2>
 <div *ngFor="#movie of movies">
 	<h3>{{movie.name}}</h3>
 	Id: {{movie.id}}<br/>
 	Rating: {{movie.criticRating}}<br/>
-	<div *ngFor="#genre of movie.genre">
-		Genre : {{genre.name}}
-	</div>
+	Genres :
+	<ul>
+		<li *ngFor="#genre of movie.genres">
+		{{genre.name}}
+	  </li>
+	</ul>
 	
 </div>

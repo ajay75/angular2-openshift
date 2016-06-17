@@ -10,16 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require('@angular/http');
+var http_2 = require('@angular/http');
 require('rxjs/Rx');
 var Observable_1 = require('rxjs/Observable');
 var MovieService = (function () {
     function MovieService(http) {
         this.http = http;
-        //private endpoint_url:string = "http://localhost:8080/movies/";
-        this.endpoint_url = "http://backend-rest-springboot.rhel-cdk.10.1.2.2.xip.io/movies";
+        //private endpoint_url:string = "http://localhost:8080/";
+        this.endpoint_url = "http://backend-rest-springboot.rhel-cdk.10.1.2.2.xip.io/";
     }
     MovieService.prototype.getAllMovies = function () {
-        return this.http.get(this.endpoint_url)
+        return this.http.get(this.endpoint_url + "movies")
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    MovieService.prototype.addMovies = function (movies) {
+        var body = JSON.stringify(movies);
+        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_2.RequestOptions({ headers: headers });
+        return this.http.put(this.endpoint_url + "addMovies", body, options)
             .map(this.extractData)
             .catch(this.handleError);
     };

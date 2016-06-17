@@ -1,5 +1,6 @@
-import {Injectable} from "@angular/core"
-import {Http, Response} from '@angular/http';
+import { Injectable } from "@angular/core"
+import { Http, Response } from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
 import 'rxjs/Rx'
 
 import { Movie }           from './movie';
@@ -10,14 +11,24 @@ export class MovieService{
 	
 	constructor (private http: Http) {}
 	
-    //private endpoint_url:string = "http://localhost:8080/movies/";
-    private endpoint_url:string = "http://backend-rest-springboot.rhel-cdk.10.1.2.2.xip.io/movies";
+    //private endpoint_url:string = "http://localhost:8080/";
+    private endpoint_url:string = "http://backend-rest-springboot.rhel-cdk.10.1.2.2.xip.io/";
 	
     getAllMovies(){
-        return this.http.get(this.endpoint_url)
+        return this.http.get(this.endpoint_url + "movies")
 						.map(this.extractData)
 						.catch(this.handleError);
     }
+	
+	addMovies(movies:Movie[]): Observable<Movie> {
+		let body = JSON.stringify(movies);
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+		let options = new RequestOptions({ headers: headers });
+
+		return this.http.put(this.endpoint_url + "addMovies", body, options)
+						.map(this.extractData)
+						.catch(this.handleError);
+	}
 
 	private extractData(res: Response) {
 		let body = res.json();

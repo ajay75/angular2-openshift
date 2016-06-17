@@ -9,6 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var movie_1 = require('./service/movie');
+var genre_1 = require('./service/genre');
 var movie_service_1 = require('./service/movie.service');
 var AppComponent = (function () {
     function AppComponent(movieService) {
@@ -19,6 +21,16 @@ var AppComponent = (function () {
         var _this = this;
         this.movieService.getAllMovies()
             .subscribe(function (movies) { return _this.movies = movies; }, function (error) { return _this.errorMessage = error; });
+    };
+    AppComponent.prototype.addMovie = function (name, rating, genre) {
+        var _this = this;
+        if (!name) {
+            this.errorMessage = "Name is mandatory";
+            return;
+        }
+        var movie = new movie_1.Movie(null, name, Number(rating), [new genre_1.Genre(genre)]);
+        this.movieService.addMovies([movie])
+            .subscribe(function (newMovie) { return _this.newMovie = newMovie; }, function (error) { return _this.errorMessage = error; });
     };
     AppComponent = __decorate([
         core_1.Component({
