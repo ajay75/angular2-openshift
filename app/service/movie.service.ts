@@ -12,7 +12,8 @@ export class MovieService{
 	constructor (private http: Http) {}
 	
     //private endpoint_url:string = "http://localhost:8080/";
-    private endpoint_url:string = "http://backend-rest-springboot.rhel-cdk.10.1.2.2.xip.io/";
+    //private endpoint_url:string = "http://backend-rest-springboot.rhel-cdk.10.1.2.2.xip.io/";
+    private endpoint_url:string = "http://backend-rest-pocopenshift.44fs.preview.openshiftapps.com/";
 	
     getAllMovies(){
         return this.http.get(this.endpoint_url + "movies")
